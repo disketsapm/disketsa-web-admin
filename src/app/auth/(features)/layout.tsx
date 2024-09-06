@@ -1,5 +1,6 @@
 import React from "react";
 import BackgroundAuth from "../_components/background-auth";
+import { Separator } from "@/shared/components/ui/separator";
 
 type ILayoutProps = {
   loginwithmagiclink: React.ReactNode;
@@ -24,6 +25,8 @@ export default function Layout({
             </div>
           </div>
           {loginwithgoogle}
+          <Separator />
+
           {loginwithemail}
         </div>
         <div className="text-xs text-muted-foreground">powered by disketsa</div>
