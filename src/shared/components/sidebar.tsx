@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/shared/components/ui/button";
-import { Bell, LayoutDashboard, University } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -30,7 +30,7 @@ export default function Sidebar() {
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <span className="">Disketsa CMS</span>
+            <span className="">Disketsa Super Apps</span>
           </Link>
         </div>
         <div className="flex-1">

@@ -18,18 +18,18 @@ const LogoIcon: React.FC<ILogoIconProps> = ({
     <div className={cn("flex items-center gap-2", classnames)}>
       {type === "grayscale" ? (
         <BaseImage
-          src="/logo/logo-grayscale.png"
+          src="/logo/logo-grayscale.svg"
           alt="logo"
           className={iconClassnames}
         />
       ) : (
         <BaseImage
-          src="/logo/logo-black.png"
+          src="/logo/logo-black.svg"
           alt="logo"
           className={iconClassnames}
         />
       )}
-      <p className="text-white font-bold text-2xl">Disketsa CMS</p>
+      <p className="text-white font-bold text-2xl">Disketsa Super Apps</p>
     </div>
   );
 };

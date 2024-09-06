@@ -10,7 +10,13 @@ const BaseImage: React.FC<{
 }> = ({ src, className, alt, priority }) => {
   return (
     <div className={cn("relative w-10 h-10", className)}>
-      <Image src={src} alt={alt ? alt : ""} fill priority={priority} />
+      <Image
+        objectFit="contain"
+        src={src}
+        alt={alt ? alt : ""}
+        fill
+        priority={priority}
+      />
     </div>
   );
 };

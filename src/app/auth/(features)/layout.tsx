@@ -1,14 +1,16 @@
-import BackgroundAuth from "@/app/auth/(ui)/_components/background-auth";
 import React from "react";
+import BackgroundAuth from "../_components/background-auth";
 
 type ILayoutProps = {
   loginwithmagiclink: React.ReactNode;
   loginwithgoogle: React.ReactNode;
+  loginwithemail: React.ReactNode;
 };
 
 export default function Layout({
   loginwithmagiclink,
   loginwithgoogle,
+  loginwithemail,
 }: ILayoutProps) {
   return (
     <div className="w-full grid-cols-2 grid h-full">
@@ -22,7 +24,7 @@ export default function Layout({
             </div>
           </div>
           {loginwithgoogle}
-          {loginwithmagiclink}
+          {loginwithemail}
         </div>
         <div className="text-xs text-muted-foreground">powered by disketsa</div>
       </div>
