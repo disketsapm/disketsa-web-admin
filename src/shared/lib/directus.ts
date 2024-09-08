@@ -1,9 +1,7 @@
-import { createDirectus, rest } from "@directus/sdk";
+import { createDirectus, rest, authentication } from "@directus/sdk";
 
-const directus = createDirectus(process.env.NEXT_PUBLIC_API as string).with(
-  rest({
-    onRequest: (options) => ({ ...options, cache: "no-store" }),
-  }),
-);
+const directus = createDirectus(process.env.NEXT_PUBLIC_API as string)
+  .with(authentication("cookie", { credentials: "include", autoRefresh: true }))
+  .with(rest({ credentials: "include" }));
 
 export default directus;

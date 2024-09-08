@@ -15,14 +15,17 @@ import { Auth } from "@/shared/types/middleware/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import { useForm } from "react-hook-form";
+import useLoginWithEmailMutation from "../../_hooks/useLoginWithEmail";
 
 const Page = () => {
   const form = useForm<Auth>({
     resolver: zodResolver(authSchema),
   });
 
+  const { mutate, isPending } = useLoginWithEmailMutation();
+
   const onSubmit = (data: Auth) => {
-    console.log(data);
+    mutate(data);
   };
 
   return (
@@ -71,6 +74,7 @@ const Page = () => {
         </div>
 
         <Button
+          isLoading={isPending}
           type="submit"
           className="w-full h-[55px]"
           startContent={<Mail className="w-6 h-6" />}
