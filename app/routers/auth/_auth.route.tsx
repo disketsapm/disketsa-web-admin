@@ -1,7 +1,7 @@
 import { Outlet } from "@remix-run/react";
 import Logo from "~/components/logo";
 
-const AuthLayout = () => {
+const AuthRouteLayout = () => {
   return (
     <div className="w-full grid-cols-2 grid h-screen">
       <div className="w-full flex flex-col justify-between items-center p-4">
@@ -24,4 +24,4 @@ const AuthLayout = () => {
   );
 };
 
-export default AuthLayout;
+export default AuthRouteLayout;

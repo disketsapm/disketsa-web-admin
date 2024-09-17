@@ -3,13 +3,18 @@ import { flatRoutes } from "remix-flat-routes";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { remixDevTools } from "remix-development-tools";
+import { routeExtensions } from "remix-custom-routes";
+import path from "path";
 
 export default defineConfig({
   plugins: [
     remixDevTools(),
     remix({
-      routes: async (defineRoutes) => {
-        return flatRoutes("routes", defineRoutes);
+      ignoredRouteFiles: ["routes/**.*"], // ignore the default route files
+      routes: async () => {
+        const appDirectory = path.join(__dirname, "app");
+
+        return routeExtensions(appDirectory);
       },
       future: {
         v3_fetcherPersist: true,

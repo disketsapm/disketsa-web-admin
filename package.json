@@ -31,6 +31,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
+    "remix-custom-routes": "^1.0.1",
     "remix-flat-routes": "^0.6.5",
     "remix-hook-form": "^5.0.4",
     "tailwind-merge": "^2.5.2",

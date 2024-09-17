@@ -2,7 +2,7 @@ import { Outlet } from "@remix-run/react";
 import Header from "~/components/header";
 import Sidebar from "~/components/sidebar";
 
-const AppLayout = () => {
+const AppRouteLayout = () => {
   return (
     <div className="w-full h-screen flex flex-col">
       <Header />
@@ -16,4 +16,4 @@ const AppLayout = () => {
   );
 };
 
-export default AppLayout;
+export default AppRouteLayout;

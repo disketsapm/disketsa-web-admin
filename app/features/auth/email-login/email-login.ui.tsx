@@ -1,31 +1,33 @@
-import { Form, json } from "@remix-run/react";
-import { Mail } from "lucide-react";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { useRemixForm, getValidatedFormData } from "remix-hook-form";
-import { authSchema, AuthType } from "domain/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ActionFunctionArgs } from "@remix-run/node";
+import { Form } from "@remix-run/react";
+import { authSchema, AuthType } from "domain/auth";
+import { Mail } from "lucide-react";
+import { useRemixForm } from "remix-hook-form";
+import { Button } from "~/components/ui/button";
 import {
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormControl,
   FormMessage,
   FormProvider,
 } from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 
-const authResolver = zodResolver(authSchema);
-
-const LoginWithEmail = () => {
+const EmailLogin = () => {
   const form = useRemixForm<AuthType>({
     mode: "onSubmit",
-    resolver: authResolver,
+    resolver: zodResolver(authSchema),
   });
 
   return (
     <FormProvider {...form}>
-      <Form method="POST" onSubmit={form.handleSubmit} action="/auth">
+      <Form
+        reloadDocument
+        method="POST"
+        onSubmit={form.handleSubmit}
+        action="/login"
+      >
         <div className="grid gap-4">
           <FormField
             control={form.control}
@@ -74,4 +76,4 @@ const LoginWithEmail = () => {
   );
 };
 
-export default LoginWithEmail;
+export default EmailLogin;
