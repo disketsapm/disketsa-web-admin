@@ -23,7 +23,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export function Layout() {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -33,10 +33,7 @@ export function Layout() {
         <Links />
       </head>
       <body>
-        <TooltipProvider>
-          <Outlet />
-        </TooltipProvider>
-        <ScrollRestoration />
+        {children}
         <Scripts />
       </body>
     </html>
@@ -44,5 +41,9 @@ export function Layout() {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <TooltipProvider>
+      <Outlet />
+    </TooltipProvider>
+  );
 }
