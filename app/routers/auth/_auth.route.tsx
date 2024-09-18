@@ -1,5 +1,13 @@
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
+import { protectAuthRoute } from "infra/auth/middleware";
 import Logo from "~/components/logo";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const token = await protectAuthRoute(request);
+
+  return token;
+};
 
 const AuthRouteLayout = () => {
   return (

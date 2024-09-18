@@ -4,7 +4,7 @@ import { DirectusAxiosAdapter } from "infra/axios/directus.axios";
 
 const service = new DirectusAxiosAdapter();
 
-export const loginWithEmail = async (body: AuthType) => {
+export const loginWithEmailAPI = async (body: AuthType) => {
   try {
     const response = await service.sendPostRequest<AuthType, AuthResponseType>(
       "/auth/login",

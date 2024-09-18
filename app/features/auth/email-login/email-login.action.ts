@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { AxiosError } from "axios";
 import { authSchema, AuthType } from "domain/auth";
-import { loginWithEmail } from "infra/api/auth/login.api";
+import { loginWithEmailAPI } from "infra/api/auth/login.api";
 import { storeTokenSession } from "infra/auth/session";
 import { getValidatedFormData } from "remix-hook-form";
 import { redirectWithToast } from "remix-toast";
@@ -22,7 +22,7 @@ export const loginEmailAction = async (
   }
 
   try {
-    const response = await loginWithEmail(data);
+    const response = await loginWithEmailAPI(data);
 
     const sessionHeader = await storeTokenSession(response.data.data);
 

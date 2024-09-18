@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
+import Logout from "~/features/auth/logout/logout.ui";
 
 const ProfileIcon = () => {
   return (
@@ -29,7 +30,7 @@ const ProfileIcon = () => {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Logout</DropdownMenuItem>
+        <Logout />
       </DropdownMenuContent>
     </DropdownMenu>
   );
