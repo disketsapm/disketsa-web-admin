@@ -8,10 +8,17 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import Logout from "~/features/auth/logout/logout.ui";
+import { useNavigation } from "@remix-run/react";
+import { useState } from "react";
 
 const ProfileIcon = () => {
+  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
+  const navigation = useNavigation();
+
+  const isOpen = isOpenDropdown || navigation.state !== "idle";
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpenDropdown}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
