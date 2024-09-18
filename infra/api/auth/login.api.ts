@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { AuthResponseType, AuthType } from "domain/auth";
 import { DirectusAxiosAdapter } from "infra/axios/directus.axios";
 

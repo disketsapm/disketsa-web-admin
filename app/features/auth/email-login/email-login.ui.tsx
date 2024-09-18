@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@remix-run/react";
+import { Form, useNavigation } from "@remix-run/react";
 import { authSchema, AuthType } from "domain/auth";
 import { Mail } from "lucide-react";
 import { useRemixForm } from "remix-hook-form";
@@ -19,15 +19,11 @@ const EmailLogin = () => {
     mode: "onSubmit",
     resolver: zodResolver(authSchema),
   });
+  const navigation = useNavigation();
 
   return (
     <FormProvider {...form}>
-      <Form
-        reloadDocument
-        method="POST"
-        onSubmit={form.handleSubmit}
-        action="/login"
-      >
+      <Form method="post" onSubmit={form.handleSubmit} action="/login">
         <div className="grid gap-4">
           <FormField
             control={form.control}
@@ -37,7 +33,11 @@ const EmailLogin = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Masukan email anda" {...field} />
+                    <Input
+                      className="h-[55px]"
+                      placeholder="m@example.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -50,11 +50,12 @@ const EmailLogin = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Kata Sandi</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      className="h-[55px]"
                       type="password"
-                      placeholder="Masukan kata sandi anda"
+                      placeholder="password"
                       {...field}
                     />
                   </FormControl>
@@ -67,6 +68,7 @@ const EmailLogin = () => {
             type="submit"
             className="w-full h-[55px]"
             startContent={<Mail className="w-6 h-6" />}
+            isLoading={navigation.state === "submitting"}
           >
             Continue with Email
           </Button>

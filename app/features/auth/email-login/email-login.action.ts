@@ -1,9 +1,12 @@
-import type { ClientActionFunctionArgs } from "@remix-run/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ActionFunctionArgs } from "@remix-run/node";
-import { json } from "@remix-run/react";
+import { AxiosError } from "axios";
 import { authSchema, AuthType } from "domain/auth";
+import { loginWithEmail } from "infra/api/auth/login.api";
+import { storeTokenSession } from "infra/auth/session";
 import { getValidatedFormData } from "remix-hook-form";
+import { redirectWithToast } from "remix-toast";
+import { typedjson } from "remix-typedjson";
 
 export const loginEmailAction = async (
   request: ActionFunctionArgs["request"]
@@ -13,13 +16,42 @@ export const loginEmailAction = async (
     data,
     receivedValues: defaultValues,
   } = await getValidatedFormData<AuthType>(request, zodResolver(authSchema));
+
   if (errors) {
-    return json({ errors, defaultValues });
+    return typedjson({ errors, defaultValues });
   }
 
-  console.log({
-    data,
-  });
+  try {
+    const response = await loginWithEmail(data);
 
-  return json({ data });
+    const sessionHeader = await storeTokenSession(response.data.data);
+
+    return redirectWithToast(
+      "/",
+      {
+        message: "Success",
+        description: "You are now logged in",
+        type: "success",
+      },
+      {
+        headers: {
+          "Set-Cookie": sessionHeader,
+        },
+      }
+    );
+  } catch (error) {
+    const err = error as AxiosError<{
+      errors: {
+        message: string;
+      }[];
+    }>;
+
+    const message = err?.response?.data?.errors?.[0]?.message;
+
+    return redirectWithToast("/login", {
+      message: "Error",
+      description: message ? message : "Something went wrong",
+      type: "error",
+    });
+  }
 };

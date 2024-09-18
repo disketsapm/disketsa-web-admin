@@ -10,3 +10,9 @@ export type AuthResponseType = {
     access_token: string;
   };
 };
+
+export type AuthLoginActionType = {
+  errors?: string;
+  data: AuthResponseType;
+  defaultValues: AuthType;
+};

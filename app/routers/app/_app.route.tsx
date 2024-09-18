@@ -1,6 +1,14 @@
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
+import { middleware } from "infra/auth/middleware";
 import Header from "~/components/header";
 import Sidebar from "~/components/sidebar";
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  const token = await middleware(request);
+
+  return token;
+};
 
 const AppRouteLayout = () => {
   return (
